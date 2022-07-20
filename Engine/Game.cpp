@@ -24,8 +24,16 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	sur(100, 100)
 {
+	for (int x = 0; x < 100; x++)
+	{
+		for (int y = 0; y < 100; y++)
+		{
+			sur.SetColor(x, y, Color(x + 50, y + 50, 180));
+		}
+	}
 }
 
 void Game::Go()
@@ -42,4 +50,5 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	gfx.PutPixel(50, 50, sur);
 }
