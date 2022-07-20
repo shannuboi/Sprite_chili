@@ -32,21 +32,23 @@ Surface::~Surface()
 
 Surface & Surface::operator=(const Surface & rhs)
 {
-	delete[] pPixels;
-	pPixels = nullptr;
-
-	width = rhs.width;
-	height = rhs.height;
-	pPixels = new Color[width * height];
-
-	for (int x = 0; x < width; x++)
+	if (this != &rhs)
 	{
-		for (int y = 0; y < height; y++)
+		delete[] pPixels;
+		pPixels = nullptr;
+
+		width = rhs.width;
+		height = rhs.height;
+		pPixels = new Color[width * height];
+
+		for (int x = 0; x < width; x++)
 		{
-			pPixels[y * width + x] = rhs.pPixels[y * width + x];
+			for (int y = 0; y < height; y++)
+			{
+				pPixels[y * width + x] = rhs.pPixels[y * width + x];
+			}
 		}
 	}
-
 	return *this;
 }
 
